@@ -28,7 +28,7 @@ class VoteSubView extends LinearLayout implements VoteObserver {
 
     public ProgressBar progressBar;
 
-    private TextView contentView;
+    public TextView contentView;
 
     private TextView sortView;
 

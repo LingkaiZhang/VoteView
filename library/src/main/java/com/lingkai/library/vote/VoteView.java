@@ -1,6 +1,10 @@
 package com.lingkai.library.vote;
 
 import android.content.Context;
+import android.os.Build;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -62,7 +66,17 @@ public class VoteView extends LinearLayout implements View.OnClickListener {
             voteSubView.setTag(index);
             voteSubView.setOnClickListener(this);
 
-
+            //获取TextView的画笔对象
+            TextPaint paint = voteSubView.contentView.getPaint();
+            //每行文本的布局宽度
+            int width = getResources().getDisplayMetrics().widthPixels - 100;
+            //实例化StaticLayout 传入相应参数
+            StaticLayout staticLayout = new StaticLayout(entry.getContent(), paint, width, Layout.Alignment.ALIGN_NORMAL, 1, 0, false);
+            if (staticLayout.getLineCount() > 1) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    voteSubView.progressBar.setMinHeight(50 + 50 * staticLayout.getLineCount());
+                }
+            }
 
             register(voteSubView);
             addView(voteSubView);
