@@ -1,22 +1,6 @@
 # VoteView
 For Android&Java 一款简单易用的投票器 (仿新浪微博)  
 
-
-
-### Performance
-
-Sina :
-
-![sinavote](images/sinavote.gif)
-
-
-
-VoteView :
-
-![voteview](images/voteview.gif)
-
-
-
 ### Usage
 
 Xml :
@@ -31,12 +15,12 @@ Xml :
         android:textSize="15dp"
         android:textStyle="bold" />
 
-    <com.comjia.library.vote.VoteView
+    <com.lingkai.library.vote.VoteView
         android:id="@+id/vote_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:background="#EEF9FB" />
+        android:layout_margin="16dp"
+        android:background="#ffffff" />
 ```
 
 
@@ -115,4 +99,3 @@ final VoteView voteView = findViewById(R.id.vote_view);
 
 - 选中子 view 的 number 是否需要默认加 1  p2 
 
-  # VoteView
