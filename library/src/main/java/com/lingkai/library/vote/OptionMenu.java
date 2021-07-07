@@ -1,4 +1,4 @@
-package com.comjia.library.vote;
+package com.lingkai.library.vote;
 
 public class OptionMenu {
     private String sort;

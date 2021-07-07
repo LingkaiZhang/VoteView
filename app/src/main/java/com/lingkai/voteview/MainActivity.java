@@ -1,4 +1,4 @@
-package com.comjia.voteview;
+package com.lingkai.voteview;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -6,9 +6,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 
-import com.comjia.library.vote.OptionMenu;
-import com.comjia.library.vote.VoteListener;
-import com.comjia.library.vote.VoteView;
+import com.lingkai.library.vote.OptionMenu;
+import com.lingkai.library.vote.VoteListener;
+import com.lingkai.library.vote.VoteView;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

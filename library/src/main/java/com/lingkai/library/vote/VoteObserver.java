@@ -1,4 +1,4 @@
-package com.comjia.library.vote;
+package com.lingkai.library.vote;
 
 import android.view.View;
 

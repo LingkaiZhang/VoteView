@@ -1,4 +1,4 @@
-package com.comjia.library.vote;
+package com.lingkai.library.vote;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -6,7 +6,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.comjia.library.R;
+import com.ProgressBar.library.R;
+
 
 import java.text.NumberFormat;
 
