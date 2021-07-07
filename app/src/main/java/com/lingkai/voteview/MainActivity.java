@@ -30,10 +30,10 @@ public class MainActivity extends Activity {
         voteData.put("日本", 99);
 
         ArrayList<OptionMenu> optionMenus = new ArrayList<>();
-        optionMenus.add(new OptionMenu("A", "美国", "23%", 0));
-        optionMenus.add(new OptionMenu("B", "英国", "45%", 15));
-        optionMenus.add(new OptionMenu("C", "中国", "7%", 33));
-        optionMenus.add(new OptionMenu("D", "办理保险学工处(学生本着自愿原则购买保险，如购买则在入学时一次", "0%", 42));
+        optionMenus.add(new OptionMenu("A", "美国", "0.23", 0));
+        optionMenus.add(new OptionMenu("B", "英国", "0.451", 15));
+        optionMenus.add(new OptionMenu("C", "中国", "0.006", 33));
+        optionMenus.add(new OptionMenu("D", "办理保险学工处(学生本着自愿原则购买保险，如购买则在入学时一次如购买则在入学时一次", "0.06", 42));
 
         voteView.initVote(optionMenus);
         voteView.setAnimationRate(600);

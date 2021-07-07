@@ -79,7 +79,7 @@ class VoteSubView extends LinearLayout implements VoteObserver {
     public void setNumber(int number,String percentage) {
         mCurrentNumber = number;
         mCurrentPercent = percentage;
-        numberView.setText(percentage);
+        numberView.setText(String.format("%s%%", Double.parseDouble(mCurrentPercent) * 100));
     }
 
     private void initAnimation() {
@@ -127,7 +127,7 @@ class VoteSubView extends LinearLayout implements VoteObserver {
             progressBar.post(new Runnable() {
                 @Override
                 public void run() {
-                    progressBarAnimation(progressBar, mCurrentNumber, mTotalNumber);
+                    progressBarAnimation(progressBar, mCurrentNumber, mTotalNumber,mCurrentPercent);
                 }
             });
             numberView.setVisibility(VISIBLE);
@@ -152,7 +152,7 @@ class VoteSubView extends LinearLayout implements VoteObserver {
             if (status) {
                 mCurrentNumber += 1;
                 mTotalNumber += 1;
-                numberView.setText(mCurrentPercent);
+                numberView.setText(String.format("%s%%", Double.parseDouble(mCurrentPercent) * 100));
             }
         }
         setSelected(status);
@@ -163,12 +163,12 @@ class VoteSubView extends LinearLayout implements VoteObserver {
         mTotalNumber = totalNumber;
     }
 
-    private void progressBarAnimation(final ProgressBar progressBar, int current, int total) {
+    private void progressBarAnimation(final ProgressBar progressBar, int current, int total, String percent) {
         NumberFormat numberFormat = NumberFormat.getInstance();
         numberFormat.setMaximumFractionDigits(3);
         float result = ((float) current / (float) total) * 100;
         Log.e("progressBarAnimation", "result" + Math.ceil(result));
-        ValueAnimator animator = ValueAnimator.ofInt(0, (int) Math.ceil(result)).setDuration(VoteView.mAnimationRate);
+        ValueAnimator animator = ValueAnimator.ofInt(0, (int) Math.ceil(Double.parseDouble(percent) * 100)).setDuration(VoteView.mAnimationRate);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {

@@ -1,5 +1,6 @@
 package com.lingkai.library.vote;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.text.Layout;
@@ -45,6 +46,7 @@ public class VoteView extends LinearLayout implements View.OnClickListener {
      *
      * @param voteData 初始化投票器数据
      */
+    @SuppressLint("NewApi")
     public void initVote(List<OptionMenu> voteData) {
         if (voteData == null) {
             throw new NullPointerException("Vote data can not be empty~!");
@@ -69,12 +71,14 @@ public class VoteView extends LinearLayout implements View.OnClickListener {
             //获取TextView的画笔对象
             TextPaint paint = voteSubView.contentView.getPaint();
             //每行文本的布局宽度
-            int width = getResources().getDisplayMetrics().widthPixels - 100;
+            int width = getResources().getDisplayMetrics().widthPixels - EasyUtil.dip2px(this, 132);
             //实例化StaticLayout 传入相应参数
             StaticLayout staticLayout = new StaticLayout(entry.getContent(), paint, width, Layout.Alignment.ALIGN_NORMAL, 1, 0, false);
             if (staticLayout.getLineCount() > 1) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    voteSubView.progressBar.setMinHeight(50 + 50 * staticLayout.getLineCount());
+                    voteSubView.progressBar.setMinHeight(EasyUtil.dip2px(this, 40 + 20 * staticLayout.getLineCount()));
+                } else {
+                    voteSubView.progressBar.setMinHeight(EasyUtil.dip2px(this, 40 + 20 * staticLayout.getLineCount()));
                 }
             }
 
