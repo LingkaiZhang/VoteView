@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.ProgressBar.library.R;
 
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 
@@ -79,7 +80,8 @@ class VoteSubView extends LinearLayout implements VoteObserver {
     public void setNumber(int number,String percentage) {
         mCurrentNumber = number;
         mCurrentPercent = percentage;
-        numberView.setText(String.format("%s%%", Double.parseDouble(mCurrentPercent) * 100));
+        DecimalFormat df = new DecimalFormat("#0.0");
+        numberView.setText(String.format("%s%%", df.format(Double.parseDouble(mCurrentPercent) * 100)));
     }
 
     private void initAnimation() {
@@ -152,7 +154,8 @@ class VoteSubView extends LinearLayout implements VoteObserver {
             if (status) {
                 mCurrentNumber += 1;
                 mTotalNumber += 1;
-                numberView.setText(String.format("%s%%", Double.parseDouble(mCurrentPercent) * 100));
+                DecimalFormat df = new DecimalFormat("#0.0");
+                numberView.setText(String.format("%s%%", df.format(Double.parseDouble(mCurrentPercent) * 100)));
             }
         }
         setSelected(status);
@@ -202,6 +205,46 @@ class VoteSubView extends LinearLayout implements VoteObserver {
 
         //进度条颜色设置
         progressBar.setProgressDrawable(getResources().getDrawable(status ? R.drawable.select_progress_view_bg : R.drawable.unselect_progress_view_bg));
+
+        LinearLayout.LayoutParams params = (LayoutParams) getLayoutParams();
+        params.setMargins(0, 0, 0, 0);
+        setLayoutParams(params);
+        //setBackgroundResource(status ? R.drawable.select_bg : R.drawable.unselect_bg);
+        params.setMargins(0, 12, 0, 12);
+        setLayoutParams(params);
+    }
+
+    public void changeChildrenViewStatus2(boolean status) {
+        //选中文字颜色
+        contentView.setTextColor(Color.parseColor(status ? "#9FC6EA" : "#808080"));
+        //数字颜色
+        numberView.setTextColor(Color.parseColor(status ? "#9FC6EA" : "#808080"));
+        //带勾选框
+//        Drawable right = getResources().getDrawable(status ? R.mipmap.vote_selected : R.mipmap.vote_empty);
+//        right.setBounds(0, 0, right.getIntrinsicWidth(), right.getIntrinsicHeight());
+//        contentView.setCompoundDrawables(null, null, right, null);
+        if (status){
+            ivSelectView.setVisibility(View.VISIBLE);
+            sortView.setVisibility(View.GONE);
+        } else {
+            ivSelectView.setVisibility(View.GONE);
+            sortView.setVisibility(View.VISIBLE);
+        }
+
+        //进度条颜色设置
+        progressBar.setProgressDrawable(getResources().getDrawable(status ? R.drawable.select_progress_view_bg : R.drawable.unselect_progress_view_bg));
+
+        progressBar.post(new Runnable() {
+            @Override
+            public void run() {
+                progressBarAnimation(progressBar, mCurrentNumber, mTotalNumber,mCurrentPercent);
+            }
+        });
+
+        DecimalFormat df = new DecimalFormat("#0.0");
+        numberView.setText(String.format("%s%%", df.format(Double.parseDouble(mCurrentPercent) * 100)));
+        numberView.setVisibility(View.VISIBLE);
+        numberView.setAlpha(1.0f);
 
         LinearLayout.LayoutParams params = (LayoutParams) getLayoutParams();
         params.setMargins(0, 0, 0, 0);

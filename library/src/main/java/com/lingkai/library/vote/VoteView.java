@@ -8,6 +8,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 
@@ -78,7 +79,9 @@ public class VoteView extends LinearLayout implements View.OnClickListener {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     voteSubView.progressBar.setMinHeight(EasyUtil.dip2px(this, 40 + 20 * staticLayout.getLineCount()));
                 } else {
-                    voteSubView.progressBar.setMinHeight(EasyUtil.dip2px(this, 40 + 20 * staticLayout.getLineCount()));
+                    ViewGroup.LayoutParams layoutParams = voteSubView.progressBar.getLayoutParams();
+                    layoutParams.height = EasyUtil.dip2px(this, 40 + 20 * staticLayout.getLineCount());
+                    voteSubView.progressBar.setLayoutParams(layoutParams );
                 }
             }
 
@@ -89,7 +92,7 @@ public class VoteView extends LinearLayout implements View.OnClickListener {
         for (VoteObserver voteObserver : voteObservers) {//处理初始化 margin 问题
             VoteSubView voteSubView = (VoteSubView) voteObserver;
             LayoutParams params = (LayoutParams) voteSubView.getLayoutParams();
-            params.setMargins(0, 16, 0, 16);
+            params.setMargins(0, 12, 0, 12);
             voteSubView.setLayoutParams(params);
         }
     }
@@ -112,6 +115,20 @@ public class VoteView extends LinearLayout implements View.OnClickListener {
      */
     public void setInitItem(int index) {
         notifyUpdateChildren(getChildAt(index), true);
+    }
+
+    /**
+     * 投票结束显示结果自己未投票
+     *
+     * @param
+     */
+    public void setVoteEndShoResult() {
+        if (voteObservers.size() == currentNumbers.size()) {
+            for (int i = 0; i < voteObservers.size(); i++) {
+                VoteSubView subView = (VoteSubView) voteObservers.get(i);
+                subView.changeChildrenViewStatus2(false);
+            }
+        }
     }
 
     /**
