@@ -24,4 +24,5 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation project(path: ':library')
 
+    implementation 'com.github.LingkaiZhang:VoteView:1.0.0'
 }
