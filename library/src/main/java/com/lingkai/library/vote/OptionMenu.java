@@ -1,5 +1,7 @@
 package com.lingkai.library.vote;
 
+import android.text.TextUtils;
+
 public class OptionMenu {
     private String sort;
     private String content;
@@ -9,7 +11,11 @@ public class OptionMenu {
     public OptionMenu(String sort, String content, String percentage, int number) {
         this.sort = sort;
         this.content = content;
-        this.percentage = percentage;
+        if (TextUtils.isEmpty(percentage)){
+            this.percentage = "0";
+        } else {
+            this.percentage = percentage;
+        }
         this.number = number;
     }
 
