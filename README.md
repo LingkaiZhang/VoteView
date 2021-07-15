@@ -3,6 +3,14 @@ For Android&Java 一款简单易用的投票器 (仿新浪微博)
 
 ### Usage
 
+```bash
+
+ dependencies {
+	        implementation 'com.github.LingkaiZhang:VoteView:1.0.0'
+	}
+	
+```
+
 Xml :
 
 ```bash
